@@ -3,7 +3,7 @@ package Semester01.Assignment04;
 import java.util.Scanner;
 
 public class Question05 {
-    // To be assigned.
+    // Assigned On 24/11/2025 - Seventh Class
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter first number: ");
@@ -19,6 +19,6 @@ public class Question05 {
             System.out.print(i + "\t");
             sum += i;
         }
-        System.out.println("\nThe of number displayed is " + sum);
+        System.out.println("\nThe sum of number displayed is " + sum);
     }
 }

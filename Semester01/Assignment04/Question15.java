@@ -1,7 +1,7 @@
 package Semester01.Assignment04;
 
 public class Question15 {
-    // To be assigned.
+    // Assigned On 24/11/2025 - Seventh Class
     public static void main(String[] args) {
         int sum = 0, squaredSum = 0;
         for (int i = 1; i <= 100; i++) {

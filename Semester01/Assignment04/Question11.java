@@ -3,7 +3,7 @@ package Semester01.Assignment04;
 import java.util.Scanner;
 
 public class Question11 {
-    // To be assigned.
+    // Assigned On 24/11/2025 - Seventh Class
     public static void main(String[] args) {
         /*
          * A number N is called perfect number, if the sum of factors except N as a factor

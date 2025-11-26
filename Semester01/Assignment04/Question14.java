@@ -3,7 +3,7 @@ package Semester01.Assignment04;
 import java.util.Scanner;
 
 public class Question14 {
-    // To be assigned.
+    // Assigned On 24/11/2025 - Seventh Class
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the value of N: ");
