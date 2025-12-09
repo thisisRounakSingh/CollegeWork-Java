@@ -24,7 +24,7 @@ public class Question13 {
                 break;
             }
         }
-        System.out.println("sin(x) using for loop series = " + sum + " radians.");
+        System.out.println("sin(x) using series = " + sum + " radians.");
         scanner.close();
     }
 }

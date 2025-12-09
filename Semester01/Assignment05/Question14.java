@@ -21,7 +21,7 @@ public class Question14 {
             }
         }
 
-        System.out.println("cos(x) using for loop series = " + sum);
+        System.out.println("cos(x) using series = " + sum);
         scanner.close();
     }
 }
