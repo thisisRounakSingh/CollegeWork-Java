@@ -3,6 +3,7 @@ package Semester01.Assignment05;
 import java.util.Scanner;
 
 public class Question15 {
+    // Assigned On 08/12/2025 - Ninth Class
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter n (n > 3): ");
