@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Question01 {
-    // Assigned On 15/12/2025 - Ninth Class
+    // Assigned On 15/12/2025 - Tenth Class
 
     /*
     * Writing all the methods that will be used to perform

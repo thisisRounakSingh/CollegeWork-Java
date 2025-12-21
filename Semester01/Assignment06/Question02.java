@@ -1,5 +1,5 @@
 public class Question02 {
-    // Assigned On 15/12/2025 - Ninth Class
+    // Assigned On 15/12/2025 - Tenth Class
 
     /**
      * @param n The number whose digits is to be calculated.
