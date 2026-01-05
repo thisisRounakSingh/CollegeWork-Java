@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Question20 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static int countSpaces(String str) {
         int countSpace = 0;
         for (int i = 0; i < str.length(); i++) {

@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Question10 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
 
     public static int area(int n) {
         return n * n;

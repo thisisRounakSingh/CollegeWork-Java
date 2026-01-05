@@ -3,7 +3,8 @@ package Semester01.Assignment07;
 import java.util.Scanner;
 
 public class Question06 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     static Scanner input = new Scanner(System.in);
 
     public static void readArray(int[] arr) {

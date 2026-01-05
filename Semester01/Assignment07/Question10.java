@@ -3,7 +3,7 @@ package Semester01.Assignment07;
 import java.util.Scanner;
 
 public class Question10 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
 
     public static int[] eliminateDuplicate(int[] list) {
         boolean[] seen = new boolean[101];

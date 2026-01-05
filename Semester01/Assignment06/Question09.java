@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Question09 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static int reverseInt(int number) {
         int reversed = 0;
         while (number != 0) {

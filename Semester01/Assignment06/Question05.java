@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Question05 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static int collatzLength(int n) {
         int count = 0;
         while (n != 1) {

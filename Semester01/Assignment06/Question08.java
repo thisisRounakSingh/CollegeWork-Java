@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Question08 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
 
     /*
     % (with another variable) helps extract last digit.

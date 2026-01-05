@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Question12 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static int countVowels(String str) {
         char vowels[] = { 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' };
         int count = 0;

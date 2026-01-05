@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Question15 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static boolean isPalindrome(String str) {
         char[] strArr = str.toCharArray();
         char revStr[] = new char[strArr.length];

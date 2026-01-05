@@ -3,7 +3,8 @@ package Semester01.Assignment07;
 import java.util.Scanner;
 
 public class Question04 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static double min(double[] array) {
         double minimum = array[0];
         for (int i = 1; i < array.length; i++) {

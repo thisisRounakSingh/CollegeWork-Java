@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Question21 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static void countCharacters(String str) {
         // Upper case: 65-90.
         // Lower case: 97-122

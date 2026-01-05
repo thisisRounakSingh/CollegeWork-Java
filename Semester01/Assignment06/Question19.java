@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Question19 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static boolean checkConsecutive(int first, int second, int third) {
         return third - second == 1 && second - first == 1;
     }

@@ -4,7 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Question01 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static int findSum(int[] arr) {
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {

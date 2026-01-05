@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Question06 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static int sumOfDivisors(int n) {
         int sum = 0;
         for (int i = 1; i < n; i++) {

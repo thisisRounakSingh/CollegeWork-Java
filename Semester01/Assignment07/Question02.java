@@ -3,7 +3,8 @@ package Semester01.Assignment07;
 import java.util.Scanner;
 
 public class Question02 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static void readInput(int[] counts) {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter integers between 1 and 100: ");

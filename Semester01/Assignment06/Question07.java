@@ -1,5 +1,5 @@
 public class Question07 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
 
     /*
     * If divisible by 400 - leap year,

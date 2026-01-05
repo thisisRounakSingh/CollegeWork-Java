@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Question17 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static char middleCharacter(String str) {
         char middle = ' ';
         if (str.length() % 2 == 0) {

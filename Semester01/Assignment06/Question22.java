@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Question22 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter a string: ");

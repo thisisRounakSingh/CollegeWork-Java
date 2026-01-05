@@ -3,7 +3,8 @@ package Semester01.Assignment07;
 import java.util.Scanner;
 
 public class Question05 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static int findSecondLargest(int[] arr) {
         // int largest = arr[0];
         // for (int i = 1; i < arr.length; i++) {

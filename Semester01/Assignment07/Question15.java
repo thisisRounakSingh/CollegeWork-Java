@@ -3,7 +3,8 @@ package Semester01.Assignment07;
 import java.util.Scanner;
 
 public class Question15 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.print("Enter 10 integers: ");

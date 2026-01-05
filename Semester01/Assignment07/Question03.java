@@ -6,7 +6,8 @@ public class Question03 {
     // declared class level scanner to avoid "closing" issues.
     static Scanner input = new Scanner(System.in);
 
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static void readArray(int[] arr) {
         System.out.print("Enter 10 integers: ");
         for (int i = 0; i < arr.length; i++) {

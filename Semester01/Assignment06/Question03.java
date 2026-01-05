@@ -1,5 +1,5 @@
 public class Question03 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
 
     /**
      * {@code Pentagonal Number} - n(3n-1)/2.

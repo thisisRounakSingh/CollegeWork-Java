@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Question13 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static int countWords(String str) {
         int count = 1;
         for (int i = 0; i < str.length(); i++) {

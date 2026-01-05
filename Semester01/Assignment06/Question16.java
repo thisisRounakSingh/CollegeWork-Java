@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Question16 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static boolean isValidPassword(String password) {
         int digitCount = 0;
         boolean response = true;

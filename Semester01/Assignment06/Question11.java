@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
 public class Question11 {
-    // To be assigned.
+    // Assigned On 22/12/2025 - Eleventh Class
+
     public static int count(String str, char a) {
         int count = 0;
         for (int i = 0; i <= str.length() - 1; i++) {
