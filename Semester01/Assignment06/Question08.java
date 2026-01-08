@@ -1,3 +1,5 @@
+package Semester01.Assignment06;
+
 import java.util.Scanner;
 
 public class Question08 {

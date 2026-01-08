@@ -1,3 +1,5 @@
+package Semester01.Assignment06;
+
 public class Question02 {
     // Assigned On 15/12/2025 - Tenth Class
 
