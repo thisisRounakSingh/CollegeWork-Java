@@ -1,0 +1,35 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "LexicographicalPermutation",
+      "request": "launch",
+      "mainClass": "LexicographicalPermutation",
+      "projectName": "CollegeWork-Java_644bfcd6"
+    },
+    {
+      "type": "java",
+      "name": "Q4NoLetterCap",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment01.Q4NoLetterCap",
+      "projectName": "CollegeWork-Java_644bfcd6"
+    },
+    {
+      "type": "java",
+      "name": "Q4",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment01.Q4",
+      "projectName": "CollegeWork-Java_644bfcd6"
+    },
+    {
+      "type": "java",
+      "name": "Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    }
+  ]
+}
