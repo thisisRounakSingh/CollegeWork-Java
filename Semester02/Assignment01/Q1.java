@@ -2,7 +2,7 @@ package Semester02.Assignment01;
 
 public class Q1 {
     // Assigned on 02/02/2026
-    public static void main(String[] args) {
+    static void main(String[] args) {
         int number = Integer.parseInt(args[0]), count = 0;
         for (int i = number; i > 2; i /= 2) {
             count++;

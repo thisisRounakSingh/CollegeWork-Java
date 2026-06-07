@@ -1,6 +1,9 @@
 #files
 .vscode/settings.json
 .vscode/no-asterisk-formatter.xml
+CollegeWork-Java.iml
+.vscode/launch.json
 
 #folders
 /.github
+.idea

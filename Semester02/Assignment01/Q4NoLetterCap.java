@@ -18,42 +18,42 @@ public class Q4NoLetterCap {
 
     /**
      * Generates the next lexicographical permutation of the given character array.
-     *
+     * <p>
      * The function rearranges the characters into the next permutation that would
      * appear in dictionary (lexicographical) order. If such an arrangement is not
      * possible (i.e., the array is already in its last permutation, sorted in
      * descending order), the function returns false and the array remains unchanged.
-     *
+     * <p>
      * Algorithm Steps:
-     *
+     * <p>
      * 1. Find the Pivot
-     *    Starting from the right, locate the first index `i` such that:
-     *        a[i] < a[i + 1]
-     *    This identifies the position where the next permutation can be formed.
-     *    If no such index exists, the array is in descending order and is already
-     *    the last permutation.
-     *
+     * Starting from the right, locate the first index `i` such that:
+     * a[i] < a[i + 1]
+     * This identifies the position where the next permutation can be formed.
+     * If no such index exists, the array is in descending order and is already
+     * the last permutation.
+     * <p>
      * 2. Find the Successor
-     *    Starting from the end of the array, find tc the first element `a[j]`
-     *    that is greater than `a[i]`. This will be the smallest element larger
-     *    than the pivot.
-     *
+     * Starting from the end of the array, find tc the first element `a[j]`
+     * that is greater than `a[i]`. This will be the smallest element larger
+     * than the pivot.
+     * <p>
      * 3. Swap Pivot and Successor
-     *    Swap `a[i]` and `a[j]`. This increases the value of the permutation
-     *    slightly while keeping it as small as possible.
-     *
+     * Swap `a[i]` and `a[j]`. This increases the value of the permutation
+     * slightly while keeping it as small as possible.
+     * <p>
      * 4. Reverse the Suffix
-     *    Reverse the portion of the array from `i + 1` to the end.
-     *    The suffix was originally in descending order, so reversing it makes
-     *    it the smallest possible sequence.
-     *
+     * Reverse the portion of the array from `i + 1` to the end.
+     * The suffix was originally in descending order, so reversing it makes
+     * it the smallest possible sequence.
+     * <p>
      * Example:
-     *    Input:  [1, 3, 5, 4, 2]
-     *    Output: [1, 4, 2, 3, 5]
+     * Input:  [1, 3, 5, 4, 2]
+     * Output: [1, 4, 2, 3, 5]
      *
      * @param a the character array representing the current permutation
      * @return true if the next permutation was generated,
-     *         false if the array was already the last permutation
+     * false if the array was already the last permutation
      */
     private static boolean nextPermutation(char[] a) {
         int i = a.length - 2;

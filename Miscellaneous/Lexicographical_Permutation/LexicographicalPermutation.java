@@ -1,3 +1,5 @@
+package Lexicographical_Permutation;
+
 import java.util.Scanner;
 
 public class LexicographicalPermutation {
