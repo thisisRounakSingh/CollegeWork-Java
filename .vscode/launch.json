@@ -3,5 +3,83 @@
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
-  "configurations": []
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Q15",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment01.Q15",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
+      "name": "Q14",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment01.Q14",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
+      "name": "Q13",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment01.Q13",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
+      "name": "Q12",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment01.Q12",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
+      "name": "Q11",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment01.Q11",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
+      "name": "Q10",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment01.Q10",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
+      "name": "Q9",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment01.Q9",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
+      "name": "Q8",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment01.Q8",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
+      "name": "Q7",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment01.Q7",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
+      "name": "Q6",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment01.Q6",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
+      "name": "Q5",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment01.Q5",
+      "projectName": "CollegeWork-Java_730d895a"
+    }
+  ]
 }
