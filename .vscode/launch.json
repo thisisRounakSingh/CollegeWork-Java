@@ -6,6 +6,48 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Q6",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment02.Q6",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
+      "name": "Q5",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment02.Q5",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
+      "name": "Q4",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment02.Q4",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
+      "name": "Q3",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment02.Q3",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
+      "name": "Q2",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment02.Q2",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
+      "name": "Q1",
+      "request": "launch",
+      "mainClass": "Semester02.Assignment02.Q1",
+      "projectName": "CollegeWork-Java_730d895a"
+    },
+    {
+      "type": "java",
       "name": "Q15",
       "request": "launch",
       "mainClass": "Semester02.Assignment01.Q15",
