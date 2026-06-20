@@ -3,7 +3,8 @@ package Semester02.Assignment03;
 import java.util.Scanner;
 
 class Q9 {
-    static void main(String[] args) {
+    // Assigned On: (Untracked)
+static void main() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a number to reverse: ");
         int number = scanner.nextInt();

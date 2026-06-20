@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Q8 {
 
-    public static void main(String args[]) {
-        /* Test Case */
+    // Assigned On: (Untracked)
+static void main() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter any real number: ");
         double x = scanner.nextDouble();
