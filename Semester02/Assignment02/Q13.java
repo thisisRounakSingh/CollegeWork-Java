@@ -63,5 +63,6 @@ public class Q13 {
         }
 
         bankWithMinimumDeposit(bank);
+        scanner.close();
     }
 }

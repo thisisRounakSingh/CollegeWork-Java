@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Q2 {
     // Assigned On: (Untracked)
-static void main() {
+    static void main() {
         String[] colorArray = new String[3];
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input 3 colors: ");
@@ -24,6 +24,7 @@ static void main() {
             System.out.println("Error: Attempted to read a null object reference.");
         } finally {
             System.out.println("Exiting the try-catch block safety net.");
+            scanner.close();
         }
         System.out.println("\nPrinting the array contents:");
         for (String s : colorArray) {
