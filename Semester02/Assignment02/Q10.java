@@ -6,12 +6,13 @@ class Student {
     protected String name;
     protected int roll;
 
+    static Scanner scanner = new Scanner(System.in);
+
     public void inputDetails() {
-        Scanner sc = new Scanner(System.in);
         System.out.print("Enter Name: ");
-        name = sc.nextLine();
+        name = scanner.nextLine();
         System.out.print("Enter Roll Number: ");
-        roll = sc.nextInt();
+        roll = scanner.nextInt();
     }
 
     public void showDetails() {
@@ -24,14 +25,15 @@ class Test extends Student {
     protected int mark1;
     protected int mark2;
 
+    static Scanner scanner = new Scanner(System.in);
+
     @Override
     public void inputDetails() {
         super.inputDetails();
-        Scanner sc = new Scanner(System.in);
         System.out.print("Enter Mark 1: ");
-        mark1 = sc.nextInt();
+        mark1 = scanner.nextInt();
         System.out.print("Enter Mark 2: ");
-        mark2 = sc.nextInt();
+        mark2 = scanner.nextInt();
     }
 
     @Override
