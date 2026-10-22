@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "Semester03.Algorithms.Main",
+      "projectName": "CollegeWork-Java_9ce3d24"
+    },
+    {
+      "type": "java",
       "name": "Q6",
       "request": "launch",
       "mainClass": "Semester02.Assignment02.Q6",

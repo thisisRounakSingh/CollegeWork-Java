@@ -9,3 +9,6 @@ macOS_Usage_Policy.md
 /.github
 .idea
 /out
+
+# local agent temp (see macOS_Usage_Policy.md)
+.tmp/

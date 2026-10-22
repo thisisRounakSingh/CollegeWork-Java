@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bubble, Insertion &amp; Selection Sort — Visual Study Sheet</title>
+<style>
+  :root {
+    --bg: #fafafa;
+    --card: #ffffff;
+    --text: #1e293b;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --accent: #2563eb;
+    --accent-soft: #eff6ff;
+    --good: #0d9488;
+    --good-soft: #ecfdf5;
+    --warn: #d97706;
+    --warn-soft: #fffbeb;
+    --swap: #dc2626;
+    --swap-soft: #fef2f2;
+    --radius: 12px;
+    --max: 920px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  header.top {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 20px 22px;
+  }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+  header.top h1 { margin: 0 0 6px; font-size: 1.7rem; letter-spacing: -0.02em; }
+  header.top p { margin: 0; color: var(--muted); max-width: 62ch; }
+  .badge-row { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .badge {
+    font-size: 0.8rem; padding: 3px 10px; border-radius: 999px;
+    border: 1px solid var(--border); background: #f8fafc; color: var(--muted);
+  }
+  main.wrap { padding-top: 22px; padding-bottom: 60px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px 22px; margin: 16px 0;
+  }
+  .card h2 { margin: 0 0 8px; font-size: 1.25rem; }
+  .card h3 { margin: 20px 0 8px; font-size: 1.02rem; }
+  .muted { color: var(--muted); }
+  .small { font-size: 0.9rem; }
+  .idea {
+    background: var(--accent-soft); border: 1px solid #dbeafe;
+    border-radius: 10px; padding: 12px 14px; margin: 12px 0;
+  }
+  .idea strong { color: var(--accent); }
+  /* tabs */
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 18px 0 0; }
+  .tab-btn {
+    border: 1px solid var(--border); background: var(--card); color: var(--text);
+    padding: 9px 16px; border-radius: 999px; cursor: pointer; font-size: 0.95rem;
+  }
+  .tab-btn[aria-selected="true"] {
+    background: var(--text); color: #fff; border-color: var(--text);
+  }
+  .tab-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  ol.steps { padding-left: 22px; margin: 8px 0; }
+  ol.steps li { margin: 6px 0; }
+  code, pre {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.88rem;
+  }
+  pre {
+    background: #0f172a; color: #e2e8f0; padding: 14px 16px;
+    border-radius: 10px; overflow-x: auto; line-height: 1.55;
+  }
+  pre .c { color: #94a3b8; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 10px 0; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  th { color: var(--muted); font-weight: 600; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .pill {
+    display: inline-block; min-width: 30px; text-align: center;
+    padding: 3px 8px; border-radius: 8px; background: #f1f5f9;
+    border: 1px solid var(--border); margin: 1px 2px; font-variant-numeric: tabular-nums;
+  }
+  .pill.hl-a { background: var(--warn-soft); border-color: #fcd34d; }
+  .pill.hl-b { background: var(--swap-soft); border-color: #fca5a5; }
+  .pill.hl-sorted { background: var(--good-soft); border-color: #5eead4; }
+  .pill.hl-key { background: #eff6ff; border-color: #93c5fd; outline: 2px solid #93c5fd; }
+  .compare-table td:first-child { white-space: nowrap; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+  .tip { border-left: 3px solid var(--good); padding: 4px 12px; background: #f8fafc; border-radius: 0 8px 8px 0; }
+  .warn-box { border-left: 3px solid var(--warn); padding: 4px 12px; background: #fffbeb; border-radius: 0 8px 8px 0; }
+  details { border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; margin: 8px 0; background: #fcfdff; }
+  summary { cursor: pointer; font-weight: 600; }
+  /* playground */
+  .controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0; }
+  button {
+    border: 1px solid var(--border); background: #f8fafc; color: var(--text);
+    padding: 8px 14px; border-radius: 9px; cursor: pointer; font-size: 0.9rem;
+  }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  button:disabled { opacity: 0.45; cursor: default; }
+  button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  input[type="text"], select {
+    padding: 8px 10px; border-radius: 9px; border: 1px solid var(--border); font-size: 0.9rem;
+    background: #fff; color: var(--text);
+  }
+  input[type="text"] { min-width: 200px; }
+  input[type="range"] { accent-color: var(--accent); }
+  #bars {
+    display: flex; align-items: flex-end; gap: 8px;
+    min-height: 170px; padding: 16px 14px 10px;
+    background: #f8fafc; border: 1px solid var(--border); border-radius: 10px;
+    margin-top: 10px;
+  }
+  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 0; }
+  .bar {
+    width: 100%; max-width: 64px; border-radius: 7px 7px 3px 3px;
+    background: #cbd5e1; border: 1px solid #94a3b8;
+    display: flex; align-items: flex-start; justify-content: center;
+    padding-top: 6px; font-size: 0.85rem; font-weight: 700; color: #0f172a;
+    transition: height 0.25s ease, background 0.15s ease;
+  }
+  .bar.compare { background: #fcd34d; border-color: #d97706; }
+  .bar.swap { background: #fca5a5; border-color: #dc2626; }
+  .bar.key { background: #93c5fd; border-color: #2563eb; }
+  .bar.min { background: #fdba74; border-color: #c2410c; }
+  .bar.sorted { background: #5eead4; border-color: #0d9488; }
+  .bar-idx { font-size: 0.75rem; color: var(--muted); }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 0.82rem; color: var(--muted); margin-top: 8px; }
+  .dot { display: inline-block; width: 11px; height: 11px; border-radius: 3px; margin-right: 5px; vertical-align: baseline; }
+  #stepMsg {
+    margin-top: 10px; padding: 10px 12px; border-radius: 10px;
+    background: var(--accent-soft); border: 1px solid #dbeafe; min-height: 44px;
+  }
+  .stats { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; font-size: 0.9rem; color: var(--muted); }
+  .stats b { color: var(--text); font-variant-numeric: tabular-nums; }
+  #traceLog {
+    margin-top: 10px; max-height: 150px; overflow-y: auto;
+    font-size: 0.85rem; background: #0f172a; color: #cbd5e1;
+    border-radius: 10px; padding: 10px 12px;
+  }
+  footer { color: var(--muted); font-size: 0.85rem; text-align: center; padding: 18px; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <h1>Bubble, Insertion &amp; Selection Sort</h1>
+    <p>A calm study sheet. No ready-made Java code here on purpose — just the <em>idea</em>, a hand-worked example, and a playground so you can rebuild each algorithm from understanding.</p>
+    <div class="badge-row">
+      <span class="badge">3 algorithms · one playground</span>
+      <span class="badge">hand-trace first, code second</span>
+      <span class="badge">~15 min read</span>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Choose algorithm to study">
+      <button class="tab-btn" role="tab" aria-selected="true" data-tab="bubble" id="tab-bubble">1 · Bubble Sort</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="insertion" id="tab-insertion">2 · Insertion Sort</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="selection" id="tab-selection">3 · Selection Sort</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="card">
+    <h2>The shared starting point</h2>
+    <p class="muted small">All three sort an array <b>in place</b> (no second array) by repeatedly comparing elements and moving them. They differ only in <b>what they look for on each pass</b>.</p>
+    <table class="compare-table">
+      <tr><th>Algorithm</th><th>Each pass does…</th><th>Picture it as…</th></tr>
+      <tr><td><b>Bubble</b></td><td>Fixes <b>adjacent pairs</b>; the biggest unsorted value “bubbles” to the end.</td><td>Bubbles rising to the surface.</td></tr>
+      <tr><td><b>Insertion</b></td><td>Takes the <b>next card</b> and slides it left into the already-sorted hand.</td><td>Sorting playing cards in your hand.</td></tr>
+      <tr><td><b>Selection</b></td><td><b>Finds the smallest</b> in the unsorted part and puts it at the front.</td><td>Picking the shortest student to the front of a line.</td></tr>
+    </table>
+    <p class="small muted">Convention below: <code>n</code> = array length, indices <code>0 … n−1</code>. “Pass” = one full sweep that places one element in its final spot.</p>
+  </section>
+
+  <!-- ============ BUBBLE ============ -->
+  <section class="card tab-panel active" id="panel-bubble" role="tabpanel" aria-labelledby="tab-bubble">
+    <h2>Bubble Sort — fix neighbours, biggest floats right</h2>
+    <div class="idea"><strong>One-line idea:</strong> walk left → right, compare each pair of neighbours, swap if they are in the wrong order. After one full walk, the largest value is guaranteed at the far right.</div>
+
+    <h3>How to think about it</h3>
+    <ol class="steps">
+      <li>Look at positions <code>j</code> and <code>j+1</code>.</li>
+      <li>If <code>a[j] &gt; a[j+1]</code>, they are inverted → <b>swap</b>. Otherwise leave them.</li>
+      <li>Move one step right and repeat until the end. That is <b>pass 1</b>; the last slot is now final.</li>
+      <li>Repeat, but stop one slot earlier each time (the tail is already sorted).</li>
+      <li><b>Early exit:</b> if a whole pass makes zero swaps, the array was already sorted — stop.</li>
+    </ol>
+
+    <h3>Idea sketch (not Java — write that yourself)</h3>
+    <pre><span class="c"># n = length. Outer pass shrinks the inner walk.</span>
+for i from 0 to n-2:
+    swapped = false
+    for j from 0 to n-2-i:      <span class="c"># stop before the sorted tail</span>
+        if a[j] &gt; a[j+1]:
+            swap a[j] and a[j+1]
+            swapped = true
+    if swapped is false: break   <span class="c"># already sorted</span></pre>
+
+    <h3>Hand-worked example</h3>
+    <p class="small muted">Array: <b>[5, 1, 4, 2, 8]</b>. Watch the biggest value drift right each pass.</p>
+    <table>
+      <tr><th>Pass</th><th>What happens (pair by pair)</th><th>Array after</th></tr>
+      <tr><td>1</td><td>5&gt;1 swap · 5&gt;4 swap · 5&gt;2 swap · 5&lt;8 keep</td><td><span class="pill">1</span><span class="pill">4</span><span class="pill">2</span><span class="pill">5</span><span class="pill hl-sorted">8</span></td></tr>
+      <tr><td>2</td><td>1&lt;4 keep · 4&gt;2 swap · 4&lt;5 keep</td><td><span class="pill">1</span><span class="pill">2</span><span class="pill">4</span><span class="pill hl-sorted">5</span><span class="pill hl-sorted">8</span></td></tr>
+      <tr><td>3</td><td>1&lt;2 keep · 2&lt;4 keep → no swaps → <b>stop</b></td><td><span class="pill hl-sorted">1</span><span class="pill hl-sorted">2</span><span class="pill hl-sorted">4</span><span class="pill hl-sorted">5</span><span class="pill hl-sorted">8</span></td></tr>
+    </table>
+
+    <div class="two-col">
+      <div class="tip small"><b>Remember:</b> after pass <code>k</code>, the last <code>k</code> slots are final. That is why the inner loop ends at <code>n−2−i</code>. Off-by-one here is the #1 bug — trace it with 3 elements on paper.</div>
+      <div class="warn-box small"><b>Common mistake:</b> forgetting the array is already sorted and doing all passes anyway. The <code>swapped</code> flag turns best-case into a single linear scan.</div>
+    </div>
+
+    <h3>Facts</h3>
+    <p class="small">Comparisons ≈ <b>n²/2</b> · Swaps: many (worst n²/2) · Best <b>O(n)</b> with flag, else <b>O(n²)</b> · Space <b>O(1)</b> · <b>Stable</b> (equal items keep order, because you only swap on strict <code>&gt;</code>).</p>
+  </section>
+
+  <!-- ============ INSERTION ============ -->
+  <section class="card tab-panel" id="panel-insertion" role="tabpanel" aria-labelledby="tab-insertion">
+    <h2>Insertion Sort — grow a sorted hand, insert each new card</h2>
+    <div class="idea"><strong>One-line idea:</strong> the left side is always sorted. Take the next unsorted card (<b>key</b>) and shift bigger cards right until you find its home.</div>
+
+    <h3>How to think about it</h3>
+    <ol class="steps">
+      <li>Element 0 alone is trivially sorted. Start with the element at index 1 as <b>key</b>.</li>
+      <li>Compare the key with the element to its left. If that element is bigger, <b>shift it one slot right</b> (not a swap — a slide).</li>
+      <li>Keep shifting left until you meet a smaller-or-equal element or run out of room.</li>
+      <li>Drop the key into the gap. The sorted region just grew by one.</li>
+      <li>Move to the next key and repeat.</li>
+    </ol>
+
+    <h3>Idea sketch (not Java — write that yourself)</h3>
+    <pre><span class="c"># left of i is already sorted</span>
+for i from 1 to n-1:
+    key = a[i]
+    j = i - 1
+    while j &gt;= 0 and a[j] &gt; key:
+        a[j+1] = a[j]   <span class="c"># shift right, opening a gap</span>
+        j = j - 1
+    a[j+1] = key        <span class="c"># place key in the gap</span></pre>
+
+    <h3>Hand-worked example</h3>
+    <p class="small muted">Array: <b>[12, 11, 13, 5, 6]</b>. The <span class="pill hl-key">blue</span> card is the key; green is the sorted hand.</p>
+    <table>
+      <tr><th>Step</th><th>Key</th><th>Action</th><th>Array after</th></tr>
+      <tr><td>i=1</td><td>11</td><td>12 shifts right, 11 inserted front</td><td><span class="pill hl-sorted">11</span><span class="pill hl-sorted">12</span><span class="pill">13</span><span class="pill">5</span><span class="pill">6</span></td></tr>
+      <tr><td>i=2</td><td>13</td><td>13 &gt; 12, already home</td><td><span class="pill hl-sorted">11</span><span class="pill hl-sorted">12</span><span class="pill hl-sorted">13</span><span class="pill">5</span><span class="pill">6</span></td></tr>
+      <tr><td>i=3</td><td>5</td><td>13, 12, 11 shift right; 5 to front</td><td><span class="pill hl-sorted">5</span><span class="pill hl-sorted">11</span><span class="pill hl-sorted">12</span><span class="pill hl-sorted">13</span><span class="pill">6</span></td></tr>
+      <tr><td>i=4</td><td>6</td><td>13, 12, 11 shift right; 6 after 5</td><td><span class="pill hl-sorted">5</span><span class="pill hl-sorted">6</span><span class="pill hl-sorted">11</span><span class="pill hl-sorted">12</span><span class="pill hl-sorted">13</span></td></tr>
+    </table>
+
+    <div class="two-col">
+      <div class="tip small"><b>Remember:</b> it <em>shifts</em>, not swaps. Save the key in a variable first, or you overwrite it. Ask yourself: “where did my key go while I shift?”</div>
+      <div class="warn-box small"><b>Common mistake:</b> writing <code>a[j] = a[j+1]</code> (wrong direction) or losing the <code>j+1</code> when <code>j</code> becomes <code>−1</code>. Trace the <code>5</code> step above with your finger.</div>
+    </div>
+
+    <h3>Facts</h3>
+    <p class="small">Best <b>O(n)</b> (already sorted — inner loop never runs) · Worst <b>O(n²)</b> · Space <b>O(1)</b> · <b>Stable</b> · Excellent for small or nearly-sorted arrays. This is why it is often used as the base case inside faster sorts.</p>
+  </section>
+
+  <!-- ============ SELECTION ============ -->
+  <section class="card tab-panel" id="panel-selection" role="tabpanel" aria-labelledby="tab-selection">
+    <h2>Selection Sort — find the smallest, put it in front</h2>
+    <div class="idea"><strong>One-line idea:</strong> divide the array into sorted (front) and unsorted (rest). Each pass <b>scans the whole unsorted part for its minimum</b> and swaps it into the boundary position.</div>
+
+    <h3>How to think about it</h3>
+    <ol class="steps">
+      <li>Boundary starts at index 0. Everything right of it is “unsorted”.</li>
+      <li>Scan from boundary → end, remembering the index of the <b>smallest seen so far</b> (<code>minIdx</code>).</li>
+      <li>After the scan, <b>one swap</b>: put <code>a[minIdx]</code> at the boundary (skip if it is already there).</li>
+      <li>Move the boundary one step right. That slot is now final.</li>
+      <li>Repeat. Exactly <code>n−1</code> passes, at most one swap per pass.</li>
+    </ol>
+
+    <h3>Idea sketch (not Java — write that yourself)</h3>
+    <pre><span class="c"># i is the boundary between sorted | unsorted</span>
+for i from 0 to n-2:
+    minIdx = i
+    for j from i+1 to n-1:
+        if a[j] &lt; a[minIdx]:
+            minIdx = j      <span class="c"># found a new smallest, remember it</span>
+    if minIdx != i:
+        swap a[i] and a[minIdx]</pre>
+
+    <h3>Hand-worked example</h3>
+    <p class="small muted">Array: <b>[64, 25, 12, 22, 11]</b>. Boundary shown as <code>|</code>.</p>
+    <table>
+      <tr><th>Pass</th><th>Scan unsorted → min</th><th>Array after</th></tr>
+      <tr><td>i=0</td><td>min of all = <b>11</b> → swap with 64</td><td><span class="pill hl-sorted">11</span><span class="pill">25</span><span class="pill">12</span><span class="pill">22</span><span class="pill">64</span></td></tr>
+      <tr><td>i=1</td><td>min of [25,12,22,64] = <b>12</b> → swap with 25</td><td><span class="pill hl-sorted">11</span><span class="pill hl-sorted">12</span><span class="pill">25</span><span class="pill">22</span><span class="pill">64</span></td></tr>
+      <tr><td>i=2</td><td>min of [25,22,64] = <b>22</b> → swap with 25</td><td><span class="pill hl-sorted">11</span><span class="pill hl-sorted">12</span><span class="pill hl-sorted">22</span><span class="pill">25</span><span class="pill">64</span></td></tr>
+      <tr><td>i=3</td><td>min of [25,64] = <b>25</b> → already home</td><td><span class="pill hl-sorted">11</span><span class="pill hl-sorted">12</span><span class="pill hl-sorted">22</span><span class="pill hl-sorted">25</span><span class="pill hl-sorted">64</span></td></tr>
+    </table>
+
+    <div class="two-col">
+      <div class="tip small"><b>Remember:</b> compare against <code>a[minIdx]</code>, not against <code>a[i]</code> every time — otherwise you swap repeatedly instead of once. One scan, one swap.</div>
+      <div class="warn-box small"><b>Common mistake:</b> swapping inside the inner loop (that turns it into a worse bubble). The swap belongs <em>after</em> the inner loop finishes.</div>
+    </div>
+
+    <h3>Facts</h3>
+    <p class="small">Always ≈ <b>n²/2 comparisons</b> — even on sorted input (no early exit) · Swaps: at most <b>n−1</b> (few!) · Space <b>O(1)</b> · <b>Not stable</b> (a distant swap can jump over equals) · Good when swaps are expensive.</p>
+  </section>
+
+  <!-- ============ PLAYGROUND ============ -->
+  <section class="card" id="playground">
+    <h2>Playground — watch each algorithm think</h2>
+    <p class="small muted">Same array, three brains. Pick an algorithm, then step slowly. Read the blue message each step — it narrates the exact decision being made. Try to predict the next step before pressing <b>Step →</b>.</p>
+
+    <div class="controls">
+      <label class="small">Algorithm
+        <select id="algoSel">
+          <option value="bubble">Bubble</option>
+          <option value="insertion">Insertion</option>
+          <option value="selection">Selection</option>
+        </select>
+      </label>
+      <label class="small">Array
+        <input type="text" id="arrInput" value="5, 3, 4, 1, 2" aria-label="Array values comma separated" />
+      </label>
+      <button id="btnLoad">Set</button>
+      <button id="btnShuffle">Shuffle</button>
+      <button id="btnReset">Reset</button>
+    </div>
+    <div class="controls">
+      <button id="btnBack">← Step</button>
+      <button id="btnNext" class="primary">Step →</button>
+      <button id="btnPlay">▶ Play</button>
+      <label class="small">Speed <input type="range" id="speed" min="1" max="10" value="4" /></label>
+    </div>
+
+    <div id="bars" aria-live="off"></div>
+    <div class="legend">
+      <span><span class="dot" style="background:#fcd34d"></span>comparing</span>
+      <span><span class="dot" style="background:#fca5a5"></span>swapped / shifted</span>
+      <span><span class="dot" style="background:#93c5fd"></span>key (insertion)</span>
+      <span><span class="dot" style="background:#fdba74"></span>current min (selection)</span>
+      <span><span class="dot" style="background:#5eead4"></span>placed / sorted</span>
+    </div>
+
+    <div id="stepMsg">Press <b>Step →</b> to begin.</div>
+    <div class="stats">
+      <span>Step <b id="stStep">0 / 0</b></span>
+      <span>Comparisons <b id="stComp">0</b></span>
+      <span>Moves <b id="stSwap">0</b></span>
+      <span>Pass <b id="stPass">–</b></span>
+    </div>
+    <div id="traceLog" aria-label="History of steps"></div>
+  </section>
+
+  <section class="card">
+    <h2>Quick self-check (answers hidden)</h2>
+    <details><summary>After ONE full bubble pass on [4, 3, 2, 1], what is the array?</summary><p class="small">[3, 2, 1, <b>4</b>]. Only the largest is guaranteed placed — the rest is still unsorted. The sorted tail grows from the right.</p></details>
+    <details><summary>Insertion sort on [2, 3, 4, 5, 1] — how many positions does the key 1 shift?</summary><p class="small">Four. Every element shifts right and 1 lands at index 0. This shows insertion sort’s worst case for a tiny element at the end.</p></details>
+    <details><summary>Why does selection sort always do ~n²/2 comparisons?</summary><p class="small">It must scan the entire unsorted region to <em>prove</em> it found the minimum. There is no early exit — sorted input costs the same as random input.</p></details>
+    <details><summary>Which two are stable, and why does it matter?</summary><p class="small">Bubble and insertion (with strict <code>&gt;</code>) keep equal items in original order. Selection can leapfrog equals with a long swap. Stability matters when sorting records by one key while preserving a previous order.</p></details>
+  </section>
+
+  <section class="card">
+    <h2>Now close this page and rebuild from memory</h2>
+    <ol class="steps small">
+      <li>On paper, trace <b>[5, 3, 4, 1, 2]</b> with each algorithm — one pass only. Check yourself in the playground.</li>
+      <li>For each algorithm, say the loop structure out loud: “outer loop does ___, inner loop does ___.”</li>
+      <li>Only then write the Java methods. Test with: already sorted, reversed, single element, duplicates.</li>
+      <li>If stuck, reopen just that algorithm’s <i>Idea sketch</i> — translate one line at a time.</li>
+    </ol>
+    <p class="small muted">Complexity summary — Bubble: best O(n) w/ flag, else O(n²) · Insertion: best O(n), worst O(n²) · Selection: always O(n²) comparisons. All O(1) extra space.</p>
+  </section>
+
+</main>
+
+<footer>Study sheet · Bubble / Insertion / Selection · trace by hand, then code it yourself.</footer>
+
+<script>
+(function () {
+  "use strict";
+  // ---------- tabs ----------
+  var btns = Array.prototype.slice.call(document.querySelectorAll(".tab-btn"));
+  var sel = document.getElementById("algoSel");
+  function showTab(name) {
+    btns.forEach(function (b) {
+      var on = b.getAttribute("data-tab") === name;
+      b.setAttribute("aria-selected", on ? "true" : "false");
+      document.getElementById("panel-" + b.getAttribute("data-tab")).classList.toggle("active", on);
+    });
+    if (sel.value !== name) { sel.value = name; build(); }
+  }
+  btns.forEach(function (b) { b.addEventListener("click", function () { showTab(b.getAttribute("data-tab")); }); });
+  sel.addEventListener("change", function () { showTab(sel.value); });
+
+  // ---------- trace builders (each step: snapshot + narration) ----------
+  function mk(arr, msg, o) {
+    o = o || {};
+    return {
+      arr: arr.slice(), msg: msg,
+      hi: o.hi || [], swap: o.swap || [],
+      key: o.key != null ? o.key : -1,
+      min: o.min != null ? o.min : -1,
+      sorted: (o.sorted || []).slice(),
+      comp: o.comp || 0, moves: o.moves || 0, pass: o.pass || ""
+    };
+  }
+
+  function bubbleTrace(a0) {
+    var a = a0.slice(), n = a.length, steps = [], comp = 0, moves = 0, sorted = [];
+    steps.push(mk(a, "Start. We will bubble the biggest unsorted value to the right, one pass at a time.", { comp: 0, moves: 0 }));
+    for (var i = 0; i < n - 1; i++) {
+      var swapped = false, pass = i + 1;
+      for (var j = 0; j < n - 1 - i; j++) {
+        comp++;
+        if (a[j] > a[j + 1]) {
+          var t = a[j]; a[j] = a[j + 1]; a[j + 1] = t; moves++; swapped = true;
+          steps.push(mk(a, "Compare a[" + j + "]=" + a[j + 1] + " and a[" + (j + 1) + "]=" + a[j] + " → out of order, swap them.",
+            { hi: [j, j + 1], swap: [j, j + 1], sorted: sorted, comp: comp, moves: moves, pass: pass }));
+        } else {
+          steps.push(mk(a, "Compare a[" + j + "]=" + a[j] + " and a[" + (j + 1) + "]=" + a[j + 1] + " → fine, leave them.",
+            { hi: [j, j + 1], sorted: sorted, comp: comp, moves: moves, pass: pass }));
+        }
+      }
+      sorted = [n - 1 - i].concat(sorted);
+      steps.push(mk(a, swapped ? "End of pass " + pass + ": position " + (n - 1 - i) + " is final (" + a[n - 1 - i] + "). Shrink the walk."
+                               : "End of pass " + pass + ": no swaps at all — array is sorted. Stop early.",
+        { sorted: sorted.slice(), comp: comp, moves: moves, pass: pass }));
+      if (!swapped) {
+        for (var k = 0; k < n; k++) if (sorted.indexOf(k) < 0) sorted.push(k);
+        sorted.sort(function (x, y) { return x - y; });
+        break;
+      }
+    }
+    if (sorted.length < a.length) { sorted = []; for (var s = 0; s < a.length; s++) sorted.push(s); }
+    steps.push(mk(a, "Done — sorted: [" + a.join(", ") + "]. " + comp + " comparisons, " + moves + " swaps.",
+      { sorted: sorted, comp: comp, moves: moves, pass: "done" }));
+    return steps;
+  }
+
+  function insertionTrace(a0) {
+    var a = a0.slice(), n = a.length, steps = [], comp = 0, moves = 0, sorted = [0];
+    steps.push(mk(a, "Start. Index 0 alone is sorted. The key will be a[1].", { key: n > 1 ? 1 : -1, sorted: n > 1 ? [] : [0], comp: 0, moves: 0 }));
+    for (var i = 1; i < n; i++) {
+      var key = a[i];
+      steps.push(mk(a, "Pass " + i + ": key = a[" + i + "] = " + key + ". Shift bigger left-neighbours right to open a gap.",
+        { key: i, sorted: sorted.slice(), comp: comp, moves: moves, pass: i }));
+      var j = i - 1;
+      while (j >= 0) {
+        comp++;
+        if (a[j] > key) {
+          a[j + 1] = a[j]; moves++;
+          steps.push(mk(a, "a[" + j + "]=" + a[j] + " > key " + key + " → shift it right. Gap moves left.",
+            { hi: [j, j + 1], swap: [j + 1], key: j, sorted: sorted.slice(), comp: comp, moves: moves, pass: i }));
+          j--;
+        } else {
+          steps.push(mk(a, "a[" + j + "]=" + a[j] + " ≤ key " + key + " → stop. The gap at " + (j + 1) + " is home.",
+            { hi: [j], key: j + 1, sorted: sorted.slice(), comp: comp, moves: moves, pass: i }));
+          break;
+        }
+      }
+      a[j + 1] = key;
+      if (!(j + 1 === i && a[i] === key && false)) { /* placed */ }
+      sorted.push(i); sorted.sort(function (x, y) { return x - y; });
+      steps.push(mk(a, "Place key " + key + " at index " + (j + 1) + ". Sorted hand is now [" + a.slice(0, i + 1).join(", ") + "].",
+        { swap: [j + 1], key: j + 1, sorted: sorted.slice(), comp: comp, moves: moves, pass: i }));
+    }
+    steps.push(mk(a, "Done — sorted: [" + a.join(", ") + "]. " + comp + " comparisons, " + moves + " shifts.",
+      { sorted: sorted, comp: comp, moves: moves, pass: "done" }));
+    return steps;
+  }
+
+  function selectionTrace(a0) {
+    var a = a0.slice(), n = a.length, steps = [], comp = 0, moves = 0, sorted = [];
+    steps.push(mk(a, "Start. Boundary at index 0. Each pass scans everything right of the boundary for the minimum.", { comp: 0, moves: 0 }));
+    for (var i = 0; i < n - 1; i++) {
+      var min = i;
+      steps.push(mk(a, "Pass " + (i + 1) + ": boundary = " + i + ". Assume min is a[" + i + "]=" + a[i] + ". Scan right…",
+        { min: min, sorted: sorted.slice(), comp: comp, moves: moves, pass: i + 1 }));
+      for (var j = i + 1; j < n; j++) {
+        comp++;
+        if (a[j] < a[min]) {
+          min = j;
+          steps.push(mk(a, "a[" + j + "]=" + a[j] + " < current min → new min is index " + j + ".",
+            { hi: [j], min: min, sorted: sorted.slice(), comp: comp, moves: moves, pass: i + 1 }));
+        } else {
+          steps.push(mk(a, "a[" + j + "]=" + a[j] + " ≥ min " + a[min] + " → keep min at index " + min + ".",
+            { hi: [j], min: min, sorted: sorted.slice(), comp: comp, moves: moves, pass: i + 1 }));
+        }
+      }
+      if (min !== i) {
+        var t = a[i]; a[i] = a[min]; a[min] = t; moves++;
+        steps.push(mk(a, "Scan done. Swap boundary a[" + i + "] with min a[" + min + "]. Position " + i + " is final.",
+          { swap: [i, min], sorted: sorted.concat([i]), comp: comp, moves: moves, pass: i + 1 }));
+      } else {
+        steps.push(mk(a, "Scan done. Min is already at the boundary — nothing to swap. Position " + i + " is final.",
+          { min: min, sorted: sorted.concat([i]), comp: comp, moves: moves, pass: i + 1 }));
+      }
+      sorted.push(i);
+    }
+    sorted.push(n - 1);
+    steps.push(mk(a, "Done — sorted: [" + a.join(", ") + "]. " + comp + " comparisons, " + moves + " swaps (at most n−1).",
+      { sorted: sorted, comp: comp, moves: moves, pass: "done" }));
+    return steps;
+  }
+
+  // ---------- player ----------
+  var barsEl = document.getElementById("bars"),
+      msgEl = document.getElementById("stepMsg"),
+      logEl = document.getElementById("traceLog"),
+      stStep = document.getElementById("stStep"),
+      stComp = document.getElementById("stComp"),
+      stSwap = document.getElementById("stSwap"),
+      stPass = document.getElementById("stPass"),
+      input = document.getElementById("arrInput"),
+      timer = null;
+
+  var trace = [], pos = 0, base = [5, 3, 4, 1, 2];
+
+  function parse(str) {
+    var parts = str.split(/[, ]+/).filter(function (s) { return s.length; });
+    var nums = parts.map(Number).filter(function (x) { return isFinite(x); });
+    if (nums.length < 2 || nums.length > 10) return null;
+    if (nums.some(function (x) { return x < 1 || x > 99 || Math.round(x) !== x; })) return null;
+    return nums;
+  }
+
+  function build() {
+    stop();
+    var v = parse(input.value);
+    if (!v) { msgEl.innerHTML = "Enter 2–10 whole numbers between 1 and 99, e.g. <code>5, 3, 4, 1, 2</code>."; return; }
+    base = v;
+    var algo = sel.value;
+    trace = algo === "bubble" ? bubbleTrace(base) : algo === "insertion" ? insertionTrace(base) : selectionTrace(base);
+    pos = 0;
+    logEl.innerHTML = "";
+    render();
+  }
+
+  function render() {
+    var s = trace[pos];
+    if (!s) return;
+    var max = Math.max.apply(null, s.arr.concat([1]));
+    barsEl.innerHTML = "";
+    s.arr.forEach(function (val, idx) {
+      var col = document.createElement("div"); col.className = "bar-col";
+      var b = document.createElement("div"); b.className = "bar";
+      b.style.height = Math.round((val / max) * 120 + 22) + "px";
+      b.textContent = val;
+      if (s.sorted.indexOf(idx) >= 0) b.classList.add("sorted");
+      if (s.hi.indexOf(idx) >= 0) b.classList.add("compare");
+      if (s.swap.indexOf(idx) >= 0) b.classList.add("swap");
+      if (idx === s.key) b.classList.add("key");
+      if (idx === s.min) b.classList.add("min");
+      var lab = document.createElement("div"); lab.className = "bar-idx"; lab.textContent = idx;
+      col.appendChild(b); col.appendChild(lab); barsEl.appendChild(col);
+    });
+    msgEl.innerHTML = "<b>Step " + pos + "/" + (trace.length - 1) + ".</b> " + s.msg;
+    stStep.textContent = pos + " / " + (trace.length - 1);
+    stComp.textContent = s.comp; stSwap.textContent = s.moves; stPass.textContent = s.pass === "" ? "–" : s.pass;
+    document.getElementById("btnBack").disabled = pos <= 0;
+    document.getElementById("btnNext").disabled = pos >= trace.length - 1;
+  }
+
+  function step(d) {
+    stop();
+    pos = Math.min(trace.length - 1, Math.max(0, pos + d));
+    render();
+    if (d > 0) {
+      var s = trace[pos];
+      var div = document.createElement("div");
+      div.textContent = "› [" + s.arr.join(", ") + "] — " + s.msg;
+      logEl.prepend(div);
+    }
+  }
+
+  function speedMs() { return 1300 - (document.getElementById("speed").value * 110); }
+  function play() {
+    if (timer) { stop(); return; }
+    document.getElementById("btnPlay").textContent = "⏸ Pause";
+    var tick = function () {
+      if (pos >= trace.length - 1) { stop(); return; }
+      pos++; render();
+      var s = trace[pos];
+      var div = document.createElement("div");
+      div.textContent = "› [" + s.arr.join(", ") + "] — " + s.msg;
+      logEl.prepend(div);
+      timer = setTimeout(tick, speedMs());
+    };
+    timer = setTimeout(tick, speedMs());
+  }
+  function stop() {
+    if (timer) clearTimeout(timer);
+    timer = null;
+    document.getElementById("btnPlay").textContent = "▶ Play";
+  }
+
+  document.getElementById("btnNext").addEventListener("click", function () { step(1); });
+  document.getElementById("btnBack").addEventListener("click", function () { step(-1); });
+  document.getElementById("btnPlay").addEventListener("click", play);
+  document.getElementById("btnLoad").addEventListener("click", build);
+  document.getElementById("btnReset").addEventListener("click", build);
+  document.getElementById("btnShuffle").addEventListener("click", function () {
+    var a = base.slice();
+    for (var i = a.length - 1; i > 0; i--) { var k = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[k]; a[k] = t; }
+    input.value = a.join(", ");
+    build();
+  });
+
+  build();
+})();
+</script>
+</body>
+</html>
